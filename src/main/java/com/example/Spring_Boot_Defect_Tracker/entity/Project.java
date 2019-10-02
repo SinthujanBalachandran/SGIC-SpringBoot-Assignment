@@ -15,9 +15,13 @@ public class Project implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
 	private Long id;
+	
+	
 	private String projectName;
+	
+	
+	
 	private String projectDescription;
 	
 	public String getProjectName() {

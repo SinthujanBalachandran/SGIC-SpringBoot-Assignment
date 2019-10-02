@@ -3,12 +3,17 @@ package com.example.Spring_Boot_Defect_Tracker.entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 
 @Entity
 @Table(name="defects")
@@ -20,8 +25,12 @@ public class Defect implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne
-	@JoinColumn
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "project_id", nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+    
+
+    
 	private Project project;
 	private String name;
 	private String priority;
